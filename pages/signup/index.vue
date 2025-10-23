@@ -1,4 +1,6 @@
-// ...existing code...
+
+
+
 <template>
   <form @submit.prevent="onSubmit" class="login-form">
     <div>
@@ -17,19 +19,19 @@
 
 <script>
 import { ref } from 'vue'
-import { useLogin } from '#imports';
+import { useSignup} from '#imports';
 
 export default {
   setup () {
     const email = ref('')
     const password = ref('')
 
-    const { login , error } = useLogin()
+    const { signup , error } = useSignup()
     
     
 
     const onSubmit = async () => {
-      const res = await login(email.value, password.value)
+      const res = await signup(email.value, password.value)
        console.log(res)
   
      
@@ -54,3 +56,7 @@ input { width: 100%; padding: 8px; box-sizing: border-box; }
 button { padding: 8px 12px; }
 </style>
 // ...existing code...
+
+<style lang="scss" scoped>
+
+</style>

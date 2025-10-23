@@ -1,13 +1,10 @@
-// Import the functions you need from the SDKs you need
-import firebase from 'firebase/app'
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// firebase/config.js
+import { initializeApp } from 'firebase/app'
+import { getFirestore, serverTimestamp } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
+import { getStorage } from 'firebase/storage'
 
 // Your web app's Firebase configuration
-
 const firebaseConfig = {
   apiKey: "AIzaSyD2rMCn6-nYjXzwzZJUxDhq0ThjpYBc3vo",
   authDomain: "macedon-ani.firebaseapp.com",
@@ -15,13 +12,17 @@ const firebaseConfig = {
   storageBucket: "macedon-ani.firebasestorage.app",
   messagingSenderId: "578129065475",
   appId: "1:578129065475:web:16b555775457e8f07ec036"
-}; 
-firebase.initializeApp(firebaseConfig);
+};
+
 // Initialize Firebase
-const projectFirestore = firebase.firestore();
-const projectAuth = firebase.auth();
-const projectStorage = firebase.storage();
+const app = initializeApp(firebaseConfig);
 
-const timestamp = firebase.firestore.Timestamp;
+// Initialize services
+const projectFirestore = getFirestore(app);
+const projectAuth = getAuth(app);
+const projectStorage = getStorage(app);
 
-export { projectFirestore, projectAuth, timestamp, projectStorage };
+// Timestamp helper
+const timestamp = serverTimestamp;
+
+export { projectFirestore, projectAuth, projectStorage, timestamp };
