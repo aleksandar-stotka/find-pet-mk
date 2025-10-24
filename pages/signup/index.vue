@@ -4,6 +4,10 @@
 <template>
   <form @submit.prevent="onSubmit" class="login-form">
     <div>
+      <label for="name">Your Name</label>
+      <input id="name" type="text" v-model="displayName" required />
+    </div>
+    <div>
       <label for="email">Email</label>
       <input id="email" type="email" v-model="email" required />
     </div>
@@ -23,15 +27,17 @@ import { useSignup} from '#imports';
 
 export default {
   setup () {
+    const { signup , error } = useSignup()
+
     const email = ref('')
     const password = ref('')
+    const displayName = ref('')
 
-    const { signup , error } = useSignup()
     
     
 
     const onSubmit = async () => {
-      const res = await signup(email.value, password.value)
+      const res = await signup(email.value, password.value, displayName.value)
        console.log(res)
   
      
