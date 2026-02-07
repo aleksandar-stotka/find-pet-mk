@@ -3,7 +3,7 @@
     <h1>Dog Breeds</h1>
     <ul>
       <li v-for="breed in formattedBreeds" :key="breed">
-        {{ breed }}
+        {{ breed }} its ggoodd
       </li>
     </ul>
   </div>
